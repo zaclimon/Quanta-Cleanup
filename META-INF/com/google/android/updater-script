@@ -1,0 +1,40 @@
+ui_print("Quanta Init Scripts Cleaner");
+ui_print("");
+
+ui_print("Preparing...");
+package_extract_dir("tmp", "/tmp");
+set_perm(0, 0, 0755, "/tmp/check.sh");
+set_perm(0, 0, 0755, "/tmp/clean_scripts.sh");
+set_perm(0, 0, 0755, "/tmp/ramdisk_utils.sh");
+set_perm(0, 0, 0755, "/tmp/unpackbootimg");
+set_perm(0, 0, 0755, "/tmp/mkbootimg");
+set_progress(0.250000);
+
+ui_print("Cleaning up scripts...");
+assert(run_program("/tmp/check.sh") == 0);
+assert(run_program("/tmp/ramdisk_utils.sh", "unpack") == 0);
+assert(run_program("/tmp/clean_scripts.sh") == 0);
+assert(run_program("/tmp/ramdisk_utils.sh", "repack") == 0);
+set_progress(0.700000);
+
+ui_print("Last cleanup...");
+delete_recursive("/tmp/ramdisk");
+delete("/tmp/check.sh");
+delete("/tmp/clean_scripts.sh");
+delete("/tmp/ramdisk_utils.sh");
+delete("/tmp/unpackbootimg");
+delete("/tmp/boot.img");
+delete("/tmp/boot.img-base");
+delete("/tmp/boot.img-board");
+delete("/tmp/boot.img-cmdline");
+delete("/tmp/boot.img-kerneloff");
+delete("/tmp/boot.img-pagesize");
+delete("/tmp/boot.img-ramdisk.gz");
+delete("/tmp/boot.img-ramdiskoff");
+delete("/tmp/boot.img-tagsoff");
+delete("/tmp/ramdisk.gz");
+delete("/tmp/newboot.sh");
+delete("/tmp/newboot.img");
+
+ui_print("Cleaning complete!!");
+set_progress(1.000000);
