@@ -32,7 +32,7 @@ if [ -f init.performance_profiles.rc ] ; then
     sed '/scaling_governor "interactive"/ s/interactive/ondemand/g' -i $DEVICE_INIT_FILE
     sed '/cpu3\/cpufreq\/scaling_governor "ondemand"/ a\    restorecon_recursive /sys/devices/system/cpu/cpufreq/ondemand' -i $DEVICE_INIT_FILE
 
-    if [ $DEVICE = "flo" ] ; then
+    if [ "$DEVICE" = "flo" ] ; then
         sed '/restorecon_recursive \/sys\/devices\/system\/cpu\/cpufreq\/ondemand/ a\    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10' -i $DEVICE_INIT_FILE
         sed '/ondemand\/down_differential 10/ a\    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 60' -i $DEVICE_INIT_FILE
         sed '/ondemand\/up_threshold_multi_core 60/ a\    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 3' -i $DEVICE_INIT_FILE
@@ -48,7 +48,7 @@ if [ -f init.performance_profiles.rc ] ; then
     sed '/ondemand\/io_is_busy 1/ a\    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4' -i $DEVICE_INIT_FILE
 
     # Restore cpu_on_migrate (For Flo/Deb)
-    if [ $DEVICE = "flo" ] ; then
+    if [ "$DEVICE" = "flo" ] ; then
         sed '/cpu3\/online 1/ a\    write /dev/cpuctl/apps/cpu.notify_on_migrate 1' -i $DEVICE_INIT_FILE
     fi
 
@@ -56,7 +56,7 @@ if [ -f init.performance_profiles.rc ] ; then
     sed '/scaling_max_freq 1512000/ d' -i $DEVICE_INIT_FILE
 
     # Remove all custom tweaks
-    if [ $DEVICE = "mako" ] ; then
+    if [ "$DEVICE" = "mako" ] ; then
         sed '/cpu1\/online 1/,/write \/sys\/kernel\/mm\/ksm\/run 1/{n;d}' -i $DEVICE_INIT_FILE
         sed '/cpu1\/online 1/,/write \/sys\/kernel\/mm\/ksm\/run 1/d' -i $DEVICE_INIT_FILE
     else
