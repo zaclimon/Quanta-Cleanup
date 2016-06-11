@@ -21,6 +21,8 @@ ui_print("Last cleanup...");
 delete_recursive("/tmp/ramdisk");
 delete("/tmp/check.sh");
 delete("/tmp/clean_scripts.sh");
+delete("/tmp/clean_api_22.sh");
+delete("/tmp/clean_api_23.sh");
 delete("/tmp/ramdisk_utils.sh");
 delete("/tmp/unpackbootimg");
 delete("/tmp/boot.img");

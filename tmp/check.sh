@@ -1,9 +1,6 @@
 #!/sbin/sh
 #
 # Simple device checkup file for Quanta compatible devices.
-# Isaac Pateau (zaclimon)
-#
-# Version 1.0
 #
 
 DEVICE=`find fstab.* | head -n 1 | cut -d . -f2`
