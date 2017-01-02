@@ -17,7 +17,7 @@ fi
 
 # Do our stuff is /system is mounted.
 if [ $? -eq 0 ] ; then
-    ANDROID_API=`cat /system/build.prop | grep ro.build.version.sdk | cut -d = -f2`
+    ANDROID_API=$(grep ro.build.version.sdk /system/build.prop | cut -d = -f2)
     echo "Executing clean_api_$ANDROID_API.sh"
     . tmp/clean_api_$ANDROID_API.sh
     exit $?

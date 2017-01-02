@@ -23,6 +23,8 @@ delete("/tmp/check.sh");
 delete("/tmp/clean_scripts.sh");
 delete("/tmp/clean_api_22.sh");
 delete("/tmp/clean_api_23.sh");
+delete("/tmp/clean_api_24.sh");
+delete("/tmp/clean_api_25.sh");
 delete("/tmp/ramdisk_utils.sh");
 delete("/tmp/unpackbootimg");
 delete("/tmp/boot.img");
